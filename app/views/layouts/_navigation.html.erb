@@ -1,0 +1,36 @@
+<div class="navbar-header">
+  <%= link_to "Review Station", root_path, :class => 'navbar-brand' %>
+</div>
+  
+<ul class="nav navbar-nav">
+  <li class="dropdown">
+    <%= link_to '#', class: "dropdown-toggle", 'data-toggle' => 'dropdown' do %>
+      Reviews <span class='caret'></span>
+    <% end %>
+    <ul class="dropdown-menu">
+      <%= link_to 'Categories', '#' %>
+      <li class="divider"></li>
+      <li>Test</li>
+      <li>Test2</li>
+      <li>Test3</li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <%= link_to '#', class: "dropdown-toggle", 'data-toggle' => 'dropdown' do %>
+      User Name <span class='caret'></span>
+    <% end %>
+    <ul class="dropdown-menu">
+      <li>Edit</li>
+      <li>View</li>
+      <li>Create Review</li>
+      <li>Logout</li>
+    </ul>
+  </li>
+  <li>
+    <%= link_to 'Login', '#' %>
+  </li>
+  <li>
+    <%= link_to 'Sign Up', '#' %>
+  </li>
+</ul>
+
