@@ -8,11 +8,13 @@
       Reviews <span class='caret'></span>
     <% end %>
     <ul class="dropdown-menu">
-      <%= link_to 'Categories', '#' %>
+      <%= link_to "All Reviews", reviews_path %>
+      <li class='divider'></li>
+      <%= link_to 'Categories', categories_path %>
       <li class="divider"></li>
-      <li>Test</li>
-      <li>Test2</li>
-      <li>Test3</li>
+      <% Category.all.each do |category| %>
+        <%= render 'categories/category', category: category %>
+      <% end %>
     </ul>
   </li>
   <li class="dropdown">

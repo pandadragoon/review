@@ -1,7 +1,4 @@
 <h1>TEST</h1>
-
 <% @posts.each do |post| %>
-  <h1><%= post.title %></h1>
-  <p><%= post.description %></p>
-  <%= link_to "Continue Reading", "some_link" %>
+  <%= render 'posts/post', post: post %>
 <% end %>

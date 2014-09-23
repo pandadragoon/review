@@ -36,7 +36,8 @@ ActiveRecord::Schema.define(version: 20140922225822) do
   end
 
   create_table "review_categories", force: true do |t|
-    t.integer "review_id"
+    t.integer "post_id"
+    t.integer "category_id"
   end
 
   create_table "reviews", force: true do |t|
