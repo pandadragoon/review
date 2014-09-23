@@ -1,3 +1,6 @@
 Review::Application.routes.draw do
-  root to: 'reviews#index'
+  root to: 'home#index'
+
+  resources :posts
+  resources :categories, only: [:index, :show]
 end
