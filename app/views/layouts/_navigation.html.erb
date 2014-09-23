@@ -8,13 +8,15 @@
       Reviews <span class='caret'></span>
     <% end %>
     <ul class="dropdown-menu">
-      <%= link_to "All Reviews", reviews_path %>
+      <li class='large'><%= link_to "All Reviews", reviews_path %></li>
       <li class='divider'></li>
-      <%= link_to 'Categories', categories_path %>
-      <li class="divider"></li>
-      <% Category.all.each do |category| %>
-        <%= render 'categories/category', category: category %>
-      <% end %>
+      <li class='large'><%= link_to 'Categories', categories_path %></li>
+      <li class='divider'></li>
+      <ul class='category'>
+        <% Category.all.each do |category| %>
+          <%= render 'categories/category', category: category %>
+        <% end %>
+      </ul>
     </ul>
   </li>
   <li class="dropdown">
@@ -24,7 +26,7 @@
     <ul class="dropdown-menu">
       <li>Edit</li>
       <li>View</li>
-      <li>Create Review</li>
+      <li><%= link_to 'Create Review', new_review_path %></li>
       <li>Logout</li>
     </ul>
   </li>

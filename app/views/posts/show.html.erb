@@ -1,4 +1,5 @@
 <h1><%= @post.title %></h1>
+<p>[<%= link_to 'edit', edit_review_path(@post) %>] [<%= link_to 'delete', review_path(@post), method: :delete %>]</p>
 <p><em>Rating:</em> <%= @post.rating %></p>
 <p class='small'><%= @post.description %></p>
 <div class="well">

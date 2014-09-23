@@ -14,3 +14,16 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.large {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.category {
+  list-style-type: none;
+  
+  li a {
+    color: #333;
+  }
+}
