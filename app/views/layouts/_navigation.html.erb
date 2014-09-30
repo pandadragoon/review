@@ -19,22 +19,26 @@
       </ul>
     </ul>
   </li>
-  <li class="dropdown">
-    <%= link_to '#', class: "dropdown-toggle", 'data-toggle' => 'dropdown' do %>
-      User Name <span class='caret'></span>
-    <% end %>
-    <ul class="dropdown-menu">
-      <li>Edit</li>
-      <li>View</li>
-      <li><%= link_to 'Create Review', new_review_path %></li>
-      <li>Logout</li>
-    </ul>
-  </li>
-  <li>
-    <%= link_to 'Login', '#' %>
-  </li>
-  <li>
-    <%= link_to 'Sign Up', '#' %>
-  </li>
+  <% if logged_in? %>
+    <li class="dropdown">
+      <%= link_to '#', class: "dropdown-toggle", 'data-toggle' => 'dropdown' do %>
+        <%= current_user.username %> <span class='caret'></span>
+      <% end %>
+      <ul class="dropdown-menu">
+        <li>Edit</li>
+        <li>View</li>
+        <li><%= link_to 'Create Review', new_review_path %></li>
+        <li><%= link_to 'Logout', logout_path %></li>
+      </ul>
+    </li>
+  <% end %>
+  <% if !logged_in? %>
+    <li>
+      <%= link_to 'Login', login_path %>
+    </li>
+    <li>
+      <%= link_to 'Sign Up', register_path %>
+    </li>
+  <% end %>
 </ul>
 

@@ -10,7 +10,9 @@ class Post < ActiveRecord::Base
     self.user_reviews.each do |usr_review|
       total += usr_review.user_review
     end
-    total = total / self.user_reviews.size
+    if self.user_reviews.size != 0
+      total = total / self.user_reviews.size
+    end
     total.round(1)
   end
 end

@@ -1,32 +1,37 @@
 <h1><%= @post.title %></h1>
-<p>[<%= link_to 'edit', edit_review_path(@post) %>] [<%= link_to 'delete', review_path(@post), method: :delete %>]</p>
+<% if logged_in? %>
+  <p>[<%= link_to 'edit', edit_review_path(@post) %>] [<%= link_to 'delete', review_path(@post), method: :delete %>]</p>
+<% end %>
+
 <p><em>Rating:</em> <%= @post.rating %></p>
 <p><em>Avg. User Rating: </em><%= @post.avg_rating  %></p>
 <p class='small'><%= @post.description %></p>
 <div class="well">
   <p><%= @post.body %></p>
 </div>
-<div class='row well'>
-  <div class="col-sm-3 col-sm-offset-1">
-    <%= form_tag user_review_review_path, method: 'post' do %>
-      <div class='form-group'>
-      <%= label_tag(:user_review, "Rate Product ") %>
-      <br />
-      <%= text_field_tag(:user_review) %>
-      </div>
-      <%= submit_tag("Submit Rating", class: "btn") %>
-    <% end %>
-  </div>
-  <div class='col-sm-4 col-sm-offset-1'>
-    <%= form_for [@post, @comment], url: review_comments_path(@post) do |f| %>
+<% if logged_in? %>
+  <div class='row well'>
+    <div class="col-sm-3 col-sm-offset-1">
+      <%= form_tag user_review_review_path, method: 'post' do %>
         <div class='form-group'>
-          <%= f.label :body, 'Leave a comment' %>
-          <%= f.text_area :body, class: 'form-control', rows: 3 %>
+        <%= label_tag(:user_review, "Rate Product ") %>
+        <br />
+        <%= text_field_tag(:user_review) %>
         </div>
-      <%= f.submit "Create Comment", class: "btn" %>
-    <% end %>
+        <%= submit_tag("Submit Rating", class: "btn") %>
+      <% end %>
+    </div>
+    <div class='col-sm-4 col-sm-offset-1'>
+      <%= form_for [@post, @comment], url: review_comments_path(@post) do |f| %>
+          <div class='form-group'>
+            <%= f.label :body, 'Leave a comment' %>
+            <%= f.text_area :body, class: 'form-control', rows: 3 %>
+          </div>
+        <%= f.submit "Create Comment", class: "btn" %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %> 
 
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>

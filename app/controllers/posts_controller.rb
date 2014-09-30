@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :require_user, except: [:show, :index]
+
   def index
     @posts = Post.all
     @categories = Category.all
@@ -16,6 +18,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
 
     if @post.save
       flash[:notice] = "Your review was posted."
@@ -46,6 +49,11 @@ class PostsController < ApplicationController
 
   def user_review
     @user_review = UserReview.create(user_id: 1, post_id: params[:id], user_review: params[:user_review])
+    if @user_review.valid?
+      flash[:notice] = "Thanks for rating the product."
+    else
+      flash[:error] = "You can only rate a product once"
+    end
     redirect_to :back
   end
   private
