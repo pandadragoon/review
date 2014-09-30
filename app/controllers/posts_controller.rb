@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -42,10 +43,15 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to root_path
   end
+
+  def user_review
+    @user_review = UserReview.create(user_id: 1, post_id: params[:id], user_review: params[:user_review])
+    redirect_to :back
+  end
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :description, :rating, :body, category_ids: [])
+  end
 end
 
-private
-
-def post_params
- params.require(:post).permit(:title, :description, :rating, :body, category_ids: [])
-end
