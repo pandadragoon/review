@@ -3,7 +3,11 @@
     <ul>
       <h2>Categories</h2>
       <% @categories.each do |category| %>
-        <%= render 'category', category: category %>
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <%= render 'category', category: category %>
+          </div>
+        </div>
       <% end %>
     </ul>
   </div>

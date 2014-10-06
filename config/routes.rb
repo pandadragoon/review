@@ -15,6 +15,6 @@ Review::Application.routes.draw do
     end
     resources :comments, only: [:create]
   end
-  resources :categories, only: [:index]
+  resources :categories, only: [:new, :create, :destroy, :index]
   resources :users, only: [:show, :create, :edit, :update]
 end

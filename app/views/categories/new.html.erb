@@ -1,0 +1,7 @@
+<%= render 'shared/header', header: "Create a new Category" %>
+
+<%= form_for @category do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Create' %>
+<% end %>

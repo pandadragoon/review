@@ -1,6 +1,17 @@
 <h1>Categories</h1>
-<ul>
+
+<div class="row">
   <% @categories.each do |category| %>
-    <%= render 'category', category: category %>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <%= render 'category', category: category %>
+          <br />
+          <% if logged_in? && admin? %>
+            <span class="label label-danger"><%= link_to 'Delete', new_category_path(category), method: :delete %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>

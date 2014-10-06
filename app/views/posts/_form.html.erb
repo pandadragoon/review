@@ -1,29 +1,29 @@
-<div class="well col-sm-6">
-
-  <%= form_for @post, url: url do |f| %>
-    <div class='form-group'>
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
-    </div>
-    <div class='form-group'>
-     <%= f.label :rating, 'Rating (1-10)' %>
-     <%= f.text_field :rating, class: "form-control rating" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
-    <div class='form-group'>
-      <%= f.label "Categories" %> <br />
-      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-        <% cb.label(class: "checkbox-inline") {cb.check_box(class: "checkbox-inline") + cb.text} %>
-      <% end %>
-    </div>
-    <div class="form-group">
-      <%= f.label :body, 'Product Review' %>
-      <%= f.text_area :body, class: 'form-control', rows: 10 %>
-    </div>
-    <%= f.submit "Submit", class: 'btn btn-primary' %>
-  <% end %>
-
+<div class="row">
+  <div class="well col-sm-6">
+    <%= form_for @post, url: url do |f| %>
+      <div class='form-group'>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class='form-group'>
+       <%= f.label :rating, 'Rating (1-10)' %>
+       <%= f.text_field :rating, class: "form-control rating" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+      <div class='form-group'>
+        <%= f.label "Categories" %> <br />
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+          <% cb.label(class: "checkbox-inline") {cb.check_box(class: "checkbox-inline") + cb.text} %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body, 'Product Review' %>
+        <%= f.text_area :body, class: 'form-control', rows: 10 %>
+      </div>
+      <%= f.submit "Submit", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 </div>

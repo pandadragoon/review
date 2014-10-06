@@ -14,7 +14,7 @@
       <li class='divider'></li>
       <ul class='category'>
         <% Category.all.each do |category| %>
-          <%= render 'categories/category', category: category %>
+          <li><%= render 'categories/category', category: category %></li>
         <% end %>
       </ul>
     </ul>
@@ -28,6 +28,10 @@
         <li><%= link_to 'Edit', edit_user_path(current_user) %></li>
         <li><%= link_to 'View', user_path(current_user) %></li>
         <li><%= link_to 'Create Review', new_review_path %></li>
+        <% if admin? %>
+          <li><%= link_to 'Create Category', new_category_path %></li>
+          <li><%= link_to 'Delete Category', categories_path %></li>
+        <% end %>
         <li><%= link_to 'Logout', logout_path %></li>
       </ul>
     </li>
