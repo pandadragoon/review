@@ -1,7 +1,7 @@
 <div class="navbar-header">
   <%= link_to "Review Station", root_path, :class => 'navbar-brand' %>
 </div>
-  
+
 <ul class="nav navbar-nav">
   <li class="dropdown">
     <%= link_to '#', class: "dropdown-toggle", 'data-toggle' => 'dropdown' do %>
@@ -25,8 +25,8 @@
         <%= current_user.username %> <span class='caret'></span>
       <% end %>
       <ul class="dropdown-menu">
-        <li>Edit</li>
-        <li>View</li>
+        <li><%= link_to 'Edit', edit_user_path(current_user) %></li>
+        <li><%= link_to 'View', user_path(current_user) %></li>
         <li><%= link_to 'Create Review', new_review_path %></li>
         <li><%= link_to 'Logout', logout_path %></li>
       </ul>
@@ -41,4 +41,3 @@
     </li>
   <% end %>
 </ul>
-

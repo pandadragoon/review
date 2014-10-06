@@ -1,16 +1,62 @@
-<h1><%= @post.title %></h1>
-<% if logged_in? %>
+<%= render 'shared/header', header: @post.title %>
+<%= render 'shared/creator_at', obj: @post %>
+<% if logged_in? && current_user.username == @post.user.username %>
   <p>[<%= link_to 'edit', edit_review_path(@post) %>] [<%= link_to 'delete', review_path(@post), method: :delete %>]</p>
 <% end %>
 
 <p><em>Rating:</em> <%= @post.rating %></p>
 <p><em>Avg. User Rating: </em><%= @post.avg_rating  %></p>
-<p class='small'><%= @post.description %></p>
+<p>Overview: <%= @post.description %></p>
 <div class="well">
   <p><%= @post.body %></p>
 </div>
 <% if logged_in? %>
-  <div class='row well'>
+    <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#rate" role="tab" data-toggle="tab">Rate Product</a></li>
+    <li><a href="#comment" role="tab" data-toggle="tab">Comment</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="rate">
+      <%= form_tag user_review_review_path, method: 'post', role: 'form' do %>
+        <div class='form-group'>
+        <%= label_tag(:user_review, "Rate Product ") %>
+        <br />
+        <%= text_field_tag(:user_review, '', size: 5) %>
+        </div>
+        <%= submit_tag("Submit Rating", class: "btn") %>
+      <% end %>
+    </div>
+    <div class="tab-pane" id="comment">
+    <%= form_for [@post, @comment], url: review_comments_path(@post) do |f| %>
+      <div class='form-group'>
+        <%= f.label :body, 'Leave a comment' %>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= f.text_area :body, rows: 3, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "Create Comment", class: "btn" %>
+    <% end %>
+    </div>
+  </div>
+
+    <!-- <div class="tab-pane" id="create_comment">
+      <%= form_for [@post, @comment], url: review_comments_path(@post) do |f| %>
+          <div class='form-group'>
+            <%= f.label :body, 'Leave a comment' %>
+            <%= f.text_area :body, class: 'form-control', rows: 3 %>
+          </div>
+        <%= f.submit "Create Comment", class: "btn" %>
+      <% end %>
+    </div>
+  </div> -->
+
+
+  <!-- <div class='row well'>
     <div class="col-sm-3 col-sm-offset-1">
       <%= form_tag user_review_review_path, method: 'post' do %>
         <div class='form-group'>
@@ -21,6 +67,7 @@
         <%= submit_tag("Submit Rating", class: "btn") %>
       <% end %>
     </div>
+
     <div class='col-sm-4 col-sm-offset-1'>
       <%= form_for [@post, @comment], url: review_comments_path(@post) do |f| %>
           <div class='form-group'>
@@ -31,10 +78,9 @@
       <% end %>
     </div>
   </div>
-<% end %> 
+<% end %> -->
 
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
 <% end %>
-

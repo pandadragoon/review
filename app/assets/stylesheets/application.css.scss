@@ -22,7 +22,7 @@
 
 .category {
   list-style-type: none;
-  
+
   li a {
     color: #333;
   }
@@ -30,4 +30,10 @@
 
 .rating {
   width: 10%;
+}
+
+#footer {
+  margin-top: 25px;
+  background-color: #ccc;
+  color: #fff;
 }

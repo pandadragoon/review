@@ -1,5 +1,6 @@
 <div class="well">
-  <h1><%= post.title %></h1>
+  <%= render 'shared/header', header: post.title %>
+  <%= render 'shared/creator_at', obj: post %>
   <p><%= post.description %></p>
   <%= link_to "Continue Reading", review_path(post) %>
 </div>
