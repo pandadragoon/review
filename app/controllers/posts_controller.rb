@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   before_action :require_user, except: [:show, :index]
   before_action :set_post, only: [:edit, :update, :show, :destroy]
+  before_action :require_creator, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all
@@ -64,4 +65,8 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
+  def require_creator
+    flash[:error] = "You can't do that" unless logged_in? and (current_user == @post.user || admin?)
+  end
+
 end
